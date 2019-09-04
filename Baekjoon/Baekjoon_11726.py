@@ -1,6 +1,6 @@
 x = int(input())
 
-dp = [0] * 1000
+dp = [0]
 dp.insert(1, 1)
 dp.insert(2, 2)
 

@@ -21,3 +21,5 @@ for i in range(3, num):
 
 # print(total)
 print(total[num-1])
+
+# 아니 이게 왜 INDEXERROR?

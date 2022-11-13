@@ -1,5 +1,2 @@
-a = input()
-
-li = list(map(int, input().split()))
-
-print(min(li), max(li))
+for i in range(3, -1, -1):
+    print(i)

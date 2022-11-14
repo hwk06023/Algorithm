@@ -12,35 +12,95 @@ for i in range(num):
     temp = list(map(int, input().split()))
     RGB_li.append(temp)
 
-for i in range(2, num, 2):
-    # i-2 ~ i까지 연산 가능한 경우를 모두 저장
-    min_R = [RGB_li[i-2][2] + RGB_li[i-1][1] + RGB_li[i][0],
-             RGB_li[i-2][1] + RGB_li[i-1][2] + RGB_li[i][0],
-             RGB_li[i-2][0] + RGB_li[i-1][1] + RGB_li[i][0], 
-             RGB_li[i-2][0] + RGB_li[i-1][2] + RGB_li[i][0]]
+# N == 2
+if (num == 2):
+    min_R = [RGB_li[0][1] + RGB_li[1][0],
+             RGB_li[0][2] + RGB_li[1][0]]
     
-    min_G = [RGB_li[i-2][2] + RGB_li[i-1][0] + RGB_li[i][1],
-             RGB_li[i-2][0] + RGB_li[i-1][2] + RGB_li[i][1],
-             RGB_li[i-2][1] + RGB_li[i-1][0] + RGB_li[i][1], 
-             RGB_li[i-2][1] + RGB_li[i-1][2] + RGB_li[i][1]]
+    min_G = [RGB_li[0][0] + RGB_li[1][1],
+             RGB_li[0][2] + RGB_li[1][1]]
 
-    min_B = [RGB_li[i-2][0] + RGB_li[i-1][1] + RGB_li[i][2],
-             RGB_li[i-2][1] + RGB_li[i-1][0] + RGB_li[i][2],
-             RGB_li[i-2][2] + RGB_li[i-1][0] + RGB_li[i][2], 
-             RGB_li[i-2][2] + RGB_li[i-1][1] + RGB_li[i][2]]
+    min_B = [RGB_li[0][0] + RGB_li[1][2],
+             RGB_li[0][1] + RGB_li[1][2]]
 
-    # 위에 저장한 리스트 토대로 min 값 구함
     min_RGB_Layer[0] = min(min_R)
     min_RGB_Layer[1] = min(min_G)
     min_RGB_Layer[2] = min(min_B)
 
-    print(min_RGB_Layer)
+    print(min(min_RGB_Layer))
 
-    # 위에 구한 min값을 토대로 next step [i-2]layer의 각 R G B 로 저장
-    RGB_li[i] = min_RGB_Layer
+# Case_1
+elif ((num-3)%2==0):
+    for i in range(2, num, 2):
+        # i-2 ~ i까지 연산 가능한 경우를 모두 저장
+        min_R = [RGB_li[i-2][2] + RGB_li[i-1][1] + RGB_li[i][0],
+                 RGB_li[i-2][1] + RGB_li[i-1][2] + RGB_li[i][0],
+                 RGB_li[i-2][0] + RGB_li[i-1][1] + RGB_li[i][0], 
+                 RGB_li[i-2][0] + RGB_li[i-1][2] + RGB_li[i][0]]
+    
+        min_G = [RGB_li[i-2][2] + RGB_li[i-1][0] + RGB_li[i][1],
+                 RGB_li[i-2][0] + RGB_li[i-1][2] + RGB_li[i][1],
+                 RGB_li[i-2][1] + RGB_li[i-1][0] + RGB_li[i][1], 
+                 RGB_li[i-2][1] + RGB_li[i-1][2] + RGB_li[i][1]]
 
-# 마지막 RGB_li에 도달한 값들 R G B 중 최솟값이 답
-print(min(RGB_li[num-1]))
+        min_B = [RGB_li[i-2][0] + RGB_li[i-1][1] + RGB_li[i][2],
+                 RGB_li[i-2][1] + RGB_li[i-1][0] + RGB_li[i][2],
+                 RGB_li[i-2][2] + RGB_li[i-1][0] + RGB_li[i][2], 
+                 RGB_li[i-2][2] + RGB_li[i-1][1] + RGB_li[i][2]]
+
+        # 위에 저장한 리스트 토대로 min 값 구함
+        min_RGB_Layer[0] = min(min_R)
+        min_RGB_Layer[1] = min(min_G)
+        min_RGB_Layer[2] = min(min_B)
+
+        # 위에 구한 min값을 토대로 next step [i-2]layer의 각 R G B 로 저장
+        RGB_li[i] = min_RGB_Layer
+
+    # 마지막 RGB_li에 도달한 값들 R G B 중 최솟값이 답
+    print(min(RGB_li[num-1]))
+
+# Case_2
+elif ((num-3)%2==1):
+    for i in range(2, num, 2):
+        # i-2 ~ i까지 연산 가능한 경우를 모두 저장
+        min_R = [RGB_li[i-2][2] + RGB_li[i-1][1] + RGB_li[i][0],
+                 RGB_li[i-2][1] + RGB_li[i-1][2] + RGB_li[i][0],
+                 RGB_li[i-2][0] + RGB_li[i-1][1] + RGB_li[i][0], 
+                 RGB_li[i-2][0] + RGB_li[i-1][2] + RGB_li[i][0]]
+    
+        min_G = [RGB_li[i-2][2] + RGB_li[i-1][0] + RGB_li[i][1],
+                 RGB_li[i-2][0] + RGB_li[i-1][2] + RGB_li[i][1],
+                 RGB_li[i-2][1] + RGB_li[i-1][0] + RGB_li[i][1], 
+                 RGB_li[i-2][1] + RGB_li[i-1][2] + RGB_li[i][1]]
+
+        min_B = [RGB_li[i-2][0] + RGB_li[i-1][1] + RGB_li[i][2],
+                 RGB_li[i-2][1] + RGB_li[i-1][0] + RGB_li[i][2],
+                 RGB_li[i-2][2] + RGB_li[i-1][0] + RGB_li[i][2], 
+                 RGB_li[i-2][2] + RGB_li[i-1][1] + RGB_li[i][2]]
+
+        # 위에 저장한 리스트 토대로 min 값 구함
+        min_RGB_Layer[0] = min(min_R)
+        min_RGB_Layer[1] = min(min_G)
+        min_RGB_Layer[2] = min(min_B)
+
+        # 위에 구한 min값을 토대로 next step [i-2]layer의 각 R G B 로 저장
+        RGB_li[i] = min_RGB_Layer
+
+    # N == 2 와 같이 위 반복문에서 나온 min Layer와 마지막 Layer과의 연산을 해준다.
+    min_R = [RGB_li[num-2][1] + RGB_li[num-1][0],
+             RGB_li[num-2][2] + RGB_li[num-1][0]]
+    
+    min_G = [RGB_li[num-2][0] + RGB_li[num-1][1],
+             RGB_li[num-2][2] + RGB_li[num-1][1]]
+
+    min_B = [RGB_li[num-2][0] + RGB_li[num-1][2],
+             RGB_li[num-2][1] + RGB_li[num-1][2]]
+
+    min_RGB_Layer[0] = min(min_R)
+    min_RGB_Layer[1] = min(min_G)
+    min_RGB_Layer[2] = min(min_B)
+
+    print(min(min_RGB_Layer))
 
 
 '''
@@ -58,7 +118,7 @@ print(min(RGB_li[num-1]))
 
     G -> .. -> G, B -> .. -> B
 
-        [R, G, B] -> [1, 2 ,3] -> [[i-2][0], [i-2][1], [i-2][2]]
+    [R, G, B] -> [1, 2 ,3] -> [[i-2][0], [i-2][1], [i-2][2]]
 
     이를 [i] -> [i-2] 층의 R G B로써 활용하면 풀릴 듯!
 '''

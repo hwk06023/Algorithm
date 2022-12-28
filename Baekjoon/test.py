@@ -1,2 +1,8 @@
-for i in range(3, -1, -1):
-    print(i)
+n = int(input())
+li = []
+
+for i in range(n):
+    li.append(int(input()))
+    
+for i in range(n):
+    

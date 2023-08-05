@@ -379,7 +379,6 @@ for i in range(n):
 
 print(round(abs((sum_1 - sum_2)/2), 1))
 
-'''
 
 def CCW(p1_x, p1_y, p2_x, p2_y, p3_x, p3_y):
     ccw = (p2_x-p1_x)*(p3_y-p1_y)-(p3_x-p1_x)*(p2_y-p1_y)
@@ -440,3 +439,83 @@ else:
         a2 = (y4 - y3) / (x4 - x3)
         b2 = y3 - a2 * x3
         print((b2 - b1) / (a1 - a2), a1 * (b2 - b1) / (a1 - a2) + b1)
+
+###############3
+
+import sys
+
+input = sys.stdin.readline
+
+n, k = map(int, input().split())
+
+if k > n/2:
+    k = n-k
+
+s = n
+t = k
+
+if k == 0:
+    print(1)
+else:
+    for i in range(1, k):
+        s *= (n-i)
+        t *= (k-i)
+
+    print(s // t)
+
+########~~~~~~~
+
+import sys 
+
+input = sys.stdin.readline
+n = int(input())
+li = list(map(int,input().split()))
+
+flag = 0
+gcd = 0
+
+if n == 1:
+    flag = li[0]
+elif n == 2 or n == 3:
+
+else:
+    tmp_li = li[0:n//2]
+    while (1) { 
+        a = max(tmp_li[0], tmp_li[1])
+        b = min(tmp_li[0], tmp_li[1])
+        while (1) {
+            c = a % b
+            a = b
+            b = c
+
+            if a % b == 0:
+                del tmp_li[0]
+                del tmp_li[1]
+                tmp_li.append(b)
+                break
+        }
+
+    }
+
+print(flag)
+
+######~~
+
+n = int(input())
+
+li = [0, 1]
+
+for i in range(1, n):
+    li.append(li[i] + li[i-1])
+
+print(li[n])
+
+'''
+
+x1 = 2
+y1 = 7
+
+x2 = 24
+y2 = 84
+
+print(0.1 + 0.2 == 0.3)

@@ -510,12 +510,27 @@ for i in range(1, n):
 
 print(li[n])
 
+##############
+
+
+n = int(input())
+
+li = [0] * 10
+for i in range(1,n+1):
+    tmp = str(i)
+    for x in tmp:
+        x = int(x)
+        li[x] += 1
+
+print(' '.join(map(str, li)))
+
+
 '''
 
-x1 = 2
-y1 = 7
+a = [1, 2]
 
-x2 = 24
-y2 = 84
+a.append(3)
 
-print(0.1 + 0.2 == 0.3)
+del a[0]
+
+print(a)

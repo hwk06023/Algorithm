@@ -527,10 +527,6 @@ print(' '.join(map(str, li)))
 
 '''
 
-a = [1, 2]
+li = {'a':0, 'b':1}
 
-a.append(3)
-
-del a[0]
-
-print(a)
+print(li['a'])

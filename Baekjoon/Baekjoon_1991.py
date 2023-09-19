@@ -31,9 +31,12 @@ tree = {}
 for i in range(n):
     value, left, right = input().split()
     tree[value] = Node(value, left, right)
-    
+
+print(tree)    
+
 pre_order(tree['A'])
 print()
 in_order(tree['A'])
 print()
 post_order(tree['A'])
+print()

@@ -526,15 +526,5 @@ print(' '.join(map(str, li)))
 
 
 '''
-n = int(input())
-
-li = [[' '] * ((2*n)-1) for _ in range(n)]
-
-x = 0
-y = n-1
-
-li[x][y] = '*'
-li[x+1][y-1] = '*'
-li[x+1][y+1] = '*'
-
-print(li)
+a = [1,2,3,4]
+print(a[3:])

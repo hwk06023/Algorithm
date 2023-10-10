@@ -526,5 +526,9 @@ print(' '.join(map(str, li)))
 
 
 '''
-a = [1,2,3,4]
-print(a[3:])
+
+import pandas as pd
+
+df = pd.DataFrame({'a': [1, 2, 3], 'b': [4, 5, 6]})
+
+print(df)

@@ -526,4 +526,3 @@ print(' '.join(map(str, li)))
 
 
 '''
-

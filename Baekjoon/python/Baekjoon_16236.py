@@ -1,57 +1,58 @@
+import sys
+from collections import deque
+
+input = sys.stdin.readline
+
 n = int(input())
-
-li = [[]] * n
-
-for i in range(n):
-    li[i] = list(map(int, input().split()))
-    if 9 in li[i]:
-        for j in range(n):
-            if li[i][j] == 9:
-                x, y = j, i
-
-state = 2
-flag = 0
-
-while(1):
-    temp = 0
-    temp_dict = {}
-    check_cnt = 0
-
-    for i in range(n):
-        for j in range(n):
-            if li[i][j] < state and li[i][j] > 0 and li[i][j] < 7:
-                if x > j:
-                    temp += x - j
-                    if y > i:
-                        temp += y - i
-                    else:
-                        temp += i - y
-                else:
-                    temp += j - x
-                    if y > i:
-                        temp += y - i
-                    else:
-                        temp += i - y
-            else:
-                check_cnt += 1
-            if(temp > 0): 
-                temp_li[temp] = [i, j]
-
-    if check_cnt == n*n: break
+graph = []
+for _ in range(n):
+    graph.append(list(map(int, input().split())))
     
-    state += 1
-    flag += min(temp_li)
+for i in range(n):
+    for j in range(n):
+        if graph[i][j] == 9:
+            shark = [i, j]
+            graph[i][j] = 0
 
-    min_temp = 99
-    min_i = 0
+def bfs():
+    dx = [-1, 0, 0, 1]  
+    dy = [0, -1, 1, 0]
+    visited = [[-1] * n for _ in range(n)]
+    visited[shark[0]][shark[1]] = 0
+    queue = deque()
+    queue.append(shark)
+    eat = []
+    while queue:
+        x, y = queue.popleft()
+        for i in range(4):
+            nx, ny = x + dx[i] , y + dy[i]
+            if 0 <= nx < n and 0 <= ny < n:
+                if visited[nx][ny] == -1 and graph[nx][ny] <= shark_size:
+                    visited[nx][ny] = visited[x][y] + 1
+                    queue.append([nx, ny])
+                    if 0 < graph[nx][ny] < shark_size:
+                        eat.append([nx, ny, visited[nx][ny]])
+    if not eat:
+        return None
+    eat.sort(key=lambda x: (x[2], x[0], x[1]))
+    return eat[0]       
 
-    for i in range(len(temp_li)):
-        if temp_li[i] < min_temp:
-            min_temp = temp_li[i]
-            min_i = i
-    print(li)
+shark_size = 2
+shark_eat = 0
+time = 0
 
-    li[temp_xy[min_i][1]][temp_xy[min_i][0]] = 0
-        
+while True:
+    result = bfs()
+    if result == None:
+        print(time)
+        break
+    else:
+        time += result[2]
+        shark = [result[0], result[1]]
+        graph[result[0]][result[1]] = 0
+        shark_eat += 1
+        if shark_eat >= shark_size:
+            shark_size += 1
+            shark_eat = 0
 
-print(flag)
+# 블로그 참고함.

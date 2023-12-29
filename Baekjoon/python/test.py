@@ -526,3 +526,11 @@ print(' '.join(map(str, li)))
 
 
 '''
+import sys
+
+input = lambda: sys.stdin.readline().rstrip()
+
+for i in range(10):
+    a = input()
+
+print(a)

@@ -527,4 +527,3 @@ print(' '.join(map(str, li)))
 
 '''
 
-print(list(set([1,2,3]) - set([1,3])))  
